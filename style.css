@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: black;
+}
+
+h1 {
+  margin: 20px 0;
+  text-align: center;
+}
+h4 {
+  color: rgb(247, 255, 12);
+  margin-top: 10px;
+}
+p {
+  text-indent: 40px;
+}
+span {
+  color: rgb(215, 105, 255);
+}
+.main {
+  max-width: 900px;
+  margin: 10px auto;
+  background-color: rgb(103, 103, 103);
+  padding: 10px;
+}
