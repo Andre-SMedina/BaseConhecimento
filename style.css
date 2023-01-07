@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   color: white;
-  text-decoration: none;
   list-style: none;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -12,8 +11,10 @@ body {
 }
 
 h1 {
+  flex-wrap: wrap;
   margin: 20px 0;
   text-align: center;
+  color: aliceblue;
 }
 h4 {
   color: rgb(247, 255, 12);
@@ -24,6 +25,9 @@ p {
 }
 span {
   color: rgb(215, 105, 255);
+}
+p a {
+  color: coral;
 }
 .main {
   max-width: 900px;
