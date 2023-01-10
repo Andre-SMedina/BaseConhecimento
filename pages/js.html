@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>JS</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">Java Script</a></h1></h1>
+
+    <div class="main">
+      <h4>Fazer função Asyncrona</h4>
+      <p>Colocando a palavra async antes de uma função, torna ela asyncrona. Exemplo:  async function banco() {await localstorage.setitem...}</p>
+      <p>Tornando a função asyncrona, o programa espera a função terminar para depois continuar na próxima linha</p>
+
+      <h4>Armazenamento local</h4>
+      <p><span>Criar:</span> await localstorage.setitem("banco", JSON.stringify({nome: "andre", cidade: "Palmas"})</p>
+      <p><span>Recuperar:</span> banco = JSON.parse(localStorage.getItem("banco"));</p>
+
+      <h4>Esperar um tempo para executar tarefa</h4>
+      <p><span>setTimeout(() => {função}, 1000);</span> Espera 1 segundo(1000 mili segundos) para executar a função</p>
+
+      <h4>JSON para String e vice-versa</h4>
+      <p><span>JSON.stringify({nome: "andre"})</span>: Transforma um objeto JSON em uma String</p>
+      <p><span>JSON.parse("{nome: 'andre'}")</span>: Transforma uma string em um objeto JSON</p>
+
+      <h4>Manipulando um array/lista</h4>
+      <p><span>array.push(item)</span>: adiciona um item ao array</p>
+      <p><span>const newArray = array.filter((item) => item != valor)</span>: Remover item de array. A arrow function criada dentro de filter vai verificar todos os itens do array através do parâmetro "item", todos que forem diferentes de "valor", farão parte do novo array que vai ser criado, e o que for igual será excluído. </p>
+      <p><span>const consulta = array.find((e) => e == item);</span> atribui à variável consulta o valor do item, se este for encontrado dentro do array</p>
+      <p><span>array.map((e) => {});</span> Percorre um array executando o bloco de código introduzido na função anônima, utilizando o "e" para receber o valor de cada item do array.</p>
+
+      <h4>Manipulando objetos(JSON)</h4>
+      <p>objeto = {nome: "andre", idade: 20, cidade: "fortaleza"}</p>
+      <p><span>objeto.idade;</span> Mostra o valor associado a chave idade</p>
+      <p><span>objeto[idade];</span> Mostra o valor associado a chave idade, porém, dessa forma é possível colocar uma variável ou uma string dentro dos colchetes.</p>
+
+      <h4>Saber quantidade de elementos</h4>
+      <p>console.log(array.length)</p>
+
+      <h4>Manipular texto</h4>
+      <p><span>texto.toUpperCase();</span> Torna o texto todo com letras maiúsculas</p>
+      <p><span>texto.toLowerCase();</span> Torna o texto todo com letras minúsculas</p>
+      <p>Para deixar apenas a primeiroa letra maiúscula, deve-se atribuir a palavra a uma variável(let nome = "andre";), depois faz assim: nome = nome[0].toUpperCase() + nome.substring(1);</p>
+
+      <h4>Pegar data</h4>
+      <p>
+        <pre>
+          const time = new Date();
+          const dias = ("0" + time.getDate()).slice(-2);
+          const mes = ("0" + (time.getMonth() + 1)).slice(-2);
+          const ano = time.getFullYear();
+          const dataAtual = `${dias}/${mes}/${ano}`;</pre>
+      </p>
+
+      <h4>Condicionais</h4>
+      <p><span>if (5 > 4 && A == B || c != d) {código} else {código};</span> Se 5 maior que 4, E, A igual B, OU, C diferente D(também pode ser se D for false), senão.</p>
+
+      <h4>Atribuir elemento HTML a uma variável</h4>
+      <p><span>const entrada = document.querySelector("#entrada")</span>: usando "#" seleciona pelo id</p>
+      <p><span>const entrada = document.querySelector(".entrada")</span>: usando "." seleciona pelo classe</p>
+
+      <h4>Criar elementos HTML</h4>
+      <p><span>const h1 = document.createElement("h1")</span>: Atribui à variável h1 um elemento HTML H1</p>
+
+      <h4>Manipular elementos HTML</h4>
+      <p><span>elemento.innerText = "texto";</span> Insere um texto no elemento</p>
+      <p><span>elemento.classList.add("classe");</span> Insere uma classe no elemento</p>
+      <p><span>elemento.setAttribute("id", "idElemento");</span> Define um ID para o elemento</p>
+      <p><span>elemento.appendChild(elemento2);</span> Insere um elemento HTML dentro de outro</p>
+
+      <h4>Realizar ação ao interagir com objeto HTML</h4>
+      <p><span>elementoHTML.addEventListener("click", () => {
+        console.log("Foi");
+      });</span>: mostra no console do navegador a palavra "foi" quando o elemento é clicado</p>
+
+      <h4>Pegar valor de elementos HTML</h4>
+      <p><span>elemento.value</span>: pega o valor de um input</p>
+
+      </div>
+  </body>
+</html>
