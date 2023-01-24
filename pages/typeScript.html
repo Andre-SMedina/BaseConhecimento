@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>TypeScript</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">Type Script</a></h1>
+
+    <div class="main">
+      <h4>Vídeos</h4>
+      <p>
+        <a href="https://www.youtube.com/watch?v=lCemyQeSCV8" target="_blank"
+          >Hora de Codar</a
+        >
+      </p>
+      <h4>Instalar no node</h4>
+      <p>npm i -g typescript</p>
+
+      <h4>Criar arquivo de configuração do type script</h4>
+      <p><span>tsc --init</span> na pasta raiz do projeto</p>
+
+      <h4>Definir tipo da variável em tsc</h4>
+      <p><span>const x: number = 10; </span>tipagem criada por annotation</p>
+      <p><span>const x = 10; </span>tipagem criada por inferencia</p>
+      <p>As duas formas funcionam do mesmo jeito</p>
+      <p><span>const lista: number[] = [1, 2, 3]; </span> tipagem de arrays</p>
+      <p>
+        <span>let tupla: [number, string, string[]; </span>Exemplo: tupla = [5,
+        "pedro", ["maria", "xuxa"]]
+      </p>
+      <p>
+        <span
+          >const objeto: {name: string, age: number} = {name: "andre", age: 40}; </span
+        >Tipagem de objetos
+      </p>
+      <p>
+        <span>let qualquer: any = 0; </span>Com a tipagem any, a variável pode
+        receber quaquer tipo de valor. Exemplo: qualquer = "oi"
+      </p>
+      <p>
+        <span>let multi: number | string = 0; </span>Utilizando o pipe "|", é
+        possível atribuir dois tipos possíveis a variável. Exemplo: multi = "oi"
+      </p>
+      <p>
+        <span>type myType = number | string; </span>Utilizando o "type", é
+        possível armazenar na variável "myType" os tipos suportados. Exemplo:
+        const x: myType = "paulo"; ou const z: myType = 30
+      </p>
+
+      <p>
+        <span>enum Size {P = "Pequeno", M = "Médio", G = "Grande"}; </span
+        >"enum" serve para guardar valores que poderão ser utilzados
+        posteriormente. Exemplo: const camisa = {name: "Camisa gola v", size:
+        Size.G}
+      </p>
+      <p>
+        <span>let literal: "autenticado" | null; </span>O type literal não
+        permite que o valor da variável seja alterado para um valor diferente do
+        que já foi pré-definido. Neste exemplo, a variável literal só poderá
+        receber o valor "autenticado" ou null. Exemplo: literal = "autenticado"
+      </p>
+
+      <h4>Tipando funções</h4>
+      <p>Tipando os argumentos de uma função</p>
+      <pre><span>function soma (a: number, b: number) {
+          return a+b
+        };</span></pre>
+
+      <p>
+        Tipando o retorno da função. Caso a função não retorne nada, deve-se
+        usar ": void" onde define o retorno
+      </p>
+      <pre><span>function hello (name: string): string {
+            return `Hello ${name}`
+          };</span></pre>
+
+      <p>Para tornar um parâmetro opicional, utiliza-se o "?"</p>
+      <pre><span>function saudacao(name: string, pronome?: string): void {
+            if (pronome) {
+              console.log(`Olá ${pronome} ${name}`)
+            } else {
+                console.log(`Olá ${name}`)
+              }
+          };</span></pre>
+
+      <p>Para tornar um parâmetro genérico</p>
+      <pre><span>function arrays&lt;T&gt;(arr: T[ ]) {
+          arr.forEach((item) => {
+            console.log(item)
+          })  
+        };
+        const a = [1,2,3]
+        const b = ["a","b","c"]
+        arrays(a)
+        arrays(b)</span></pre>
+
+      <h4>Classes</h4>
+      <p>Definindo os parâmetros da classe</p>
+      <pre><span>class User {
+            name;
+            age;
+            admin;
+            constructor(name: string, age: number, admin: boolean) {
+              this.name = name;
+              this.age = age;
+              this.admin = admin;
+            }
+            showUserName(): void {
+              console.log(`O nome do usuário é ${this.name}`)
+            }
+        }
+        const pedro = new User("pedro", 30, false);</span></pre>
+
+      <h4>Criando interfaces</h4>
+      <pre>
+<span>interface params {
+          n1: number;
+          n2: number;
+        }
+        function sum(nums: params): number {
+          return nums.n1 + nums.n2
+        }
+</span>
+        </pre>
+
+      <h4>Definir diretório root</h4>
+      <p>
+        No arquivo de configuração que foi criado a partir do comando "tsc
+        --init", vá em modules, remova o comentário da linha "rootDir" e coloque
+        o caminho da pasta src. "rootDir": "./src",
+      </p>
+
+      <h4>Definir diretório de saída</h4>
+      <p>
+        No arquivo de configuração "tsconfig.json", altere a linha "outDir" para
+        direcionar para o diretório de saída (local onde vai ser gerado o
+        arquivo.js após compilar o arquivo.ts com o comando "tsc" no terminal).
+        Exemplo: "outDir": "./dist/js". Após isso, digitar no console o comando
+        tsc e apertar enter
+      </p>
+
+      <h4>Compilação automática</h4>
+      <p>
+        Para o arquivo.ts ser compilado sempre que houver alteração, digite no
+        terminal o comando "tsc -w"
+      </p>
+    </div>
+  </body>
+</html>

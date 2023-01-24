@@ -20,11 +20,12 @@ h4 {
   color: rgb(247, 255, 12);
   margin-top: 10px;
 }
-p {
+p,
+pre {
   text-indent: 40px;
 }
 span {
-  color: rgb(215, 105, 255);
+  color: hsl(284, 100%, 81%);
 }
 p a {
   color: coral;

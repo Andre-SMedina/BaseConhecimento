@@ -8,7 +8,7 @@
     <title>JS</title>
   </head>
   <body>
-    <h1><a href="../index.html">Java Script</a></h1></h1>
+    <h1><a href="../index.html">Java Script</a></h1>
 
     <div class="main">
       <h4>Fazer função Asyncrona</h4>
@@ -44,8 +44,14 @@
       <p><span>texto.toUpperCase();</span> Torna o texto todo com letras maiúsculas</p>
       <p><span>texto.toLowerCase();</span> Torna o texto todo com letras minúsculas</p>
       <p>Para deixar apenas a primeiroa letra maiúscula, deve-se atribuir a palavra a uma variável(let nome = "andre";), depois faz assim: nome = nome[0].toUpperCase() + nome.substring(1);</p>
+      <p><span>"10/01/2023".split("/");</span> Cria um array a partir de uma string, separando cada elemento onde tiver a "/". Útil para organizar datas</p>
+      <p><span>[1, 2, 3].reverse();</span> inverte a ordem dos elemntos de um array. Útil para organizar datas</p>
+      <p><span>["10", "01", "2023"].join("-");</span> Cria uma string com todos os elementos do array separados por "-". Útil para organizar datas</p>
+      <p><span>("0" + 1).slice(-2);</span> Mostra sempre os dois últimos elementos. Bastante útil para padronizar horas e datas com 2 números</p>
+      <p><span>"  andre  ".trim();</span> Remove os espaços em branco</p>
 
-      <h4>Pegar data</h4>
+      <h4>Trabalhando com datas</h4>
+      <p><span>Pegar data atual no padrão BR</span></p>
       <p>
         <pre>
           const time = new Date();
@@ -54,9 +60,35 @@
           const ano = time.getFullYear();
           const dataAtual = `${dias}/${mes}/${ano}`;</pre>
       </p>
+      <p>
+        <span>Tempo passado entre dois períodos:</span>
+      </p>
+      <p><pre>
+            //pega o valor total em milisegundos e converte para minutos
+            const minTot = (new Date("2021-10-08T09:35:00") - new Date("2021-10-05T01:45:00")) / 60000;
+            //converte os minutos totais em horas, arredondando
+            const hrTot = parseInt(minTot / 60);
+            //converte as horas totais em dias, arredondando
+            const dias = parseInt(hrTot / 24);
+            //pega a quantidade de horas que sobra após subtrair os dias
+            const hr = hrTot - dias * 24;
+            //pega a quantidade de minutos que sobra após subtrair as horas
+            const min = minTot - hr * 60;
+            const ressultado = `${("0" + dias).slice(-2)}dias ${("0" + hr).slice(-2)}horas ${("0" + min).slice(-2)}minutos`;</pre></p>
+      <p><span>Para somar horas</span></p>
+      <p>
+        <pre>
+            const hr1 = "01:45".split(":");
+            const hr2 = "01:50".split(":");
+            const totmin = parseInt(hr1[0]) * 60 + parseInt(hr1[1]) + (parseInt(hr2[0]) * 60 + parseInt(hr2[1]));
+            const xhr = parseInt(totmin / 60);
+            const xmin = totmin - xhr * 60;
+            const result = `${("0" + xhr).slice(-2)}:${("0" + xmin).slice(-2)}`;</pre>
+      </p>
 
       <h4>Condicionais</h4>
       <p><span>if (5 > 4 && A == B || c != d) {código} else {código};</span> Se 5 maior que 4, E, A igual B, OU, C diferente D(também pode ser se D for false), senão.</p>
+      <p><span>const res = 5 > 4 ? true : false;</span> Operador ternário: "5 > 4" expressão que se for verdadeira, a variável res recebe true, se for falso recebe falso</p>
 
       <h4>Atribuir elemento HTML a uma variável</h4>
       <p><span>const entrada = document.querySelector("#entrada")</span>: usando "#" seleciona pelo id</p>
@@ -67,6 +99,7 @@
 
       <h4>Manipular elementos HTML</h4>
       <p><span>elemento.innerText = "texto";</span> Insere um texto no elemento</p>
+      <p><span>elemento.innerHTML = "texto HTML";</span> Insere um texto no elemento com a possibilidade de também inserir tags HTML. Também é possível excluir todos os elementos filhos(child) de um elemento atribuindo aspas vazias</p>
       <p><span>elemento.classList.add("classe");</span> Insere uma classe no elemento</p>
       <p><span>elemento.setAttribute("id", "idElemento");</span> Define um ID para o elemento</p>
       <p><span>elemento.appendChild(elemento2);</span> Insere um elemento HTML dentro de outro</p>
