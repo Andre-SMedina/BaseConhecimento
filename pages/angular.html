@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
     <title>Angular</title>
   </head>
   <body>
@@ -32,13 +33,97 @@
       <h4>Criar um componente</h4>
       <p>ng generate component components/first-component</p>
 
-      <h4>Importar um componente</h4>
-      <p>
-        No arquivo app.component.html na pasta app, abra uma tag e digite
-        <span
-          >&lt;app-"nome-do-componente"&gt;&lt;/app-"nome-do-componente"&gt;</span
-        >
-      </p>
+      <div id="div1" onclick="show('div1')">
+        <h4>Importar um componente</h4>
+        <div class="oculto">
+          <p>
+            No arquivo app.component.html na pasta app, abra uma tag e digite
+            <span
+              >&lt;app-"nome-do-componente"&gt;&lt;/app-"nome-do-componente"&gt;</span
+            >
+          </p>
+        </div >
+      </div >
+
+      <div id="div2" onclick="show('div2')">
+        <h4>Adicionar dados do componente ao template HTML</h4>
+        <div class="oculto">
+          <p>
+            Vá no arquivo "nomeComponent.component.ts" e adicione as
+            variáveis/propriedades ou funções na classe que está sendo exportada. Exemplo:
+            <pre><span>export class nomeComponent {
+              name: string = "Andre";
+              age: number = 30;
+              hobbies = ['Nadar', 'Correr', 'Ler'];
+              car = { name: 'Polo', year: 2019 };
+            }</span>
+            </pre>
+          </p>
+          <p>Depois vá no arquivo "nomeComponent.component.html" e adicione o valor das variáveis utilizando {{variável}} Exemplos:</p>
+          <p>{{ name }}</p>
+          <p>{{ hobbies[1] }}</p>
+          <p>{{ car.name }}</p>
+        </div >
+      </div >
+
+      <div id="div3" onclick="show('div3')">
+        <h4 >Adicionar estilos/CSS estáticos</h4>
+        <div class="oculto">
+          <p>Global: Na pasta src, abra o arquivo styles.css e faça suas alterações</p>
+          <p>No componente: Na pasta src/app, abra o arquivo nomeComponent.component.css e faça suas alterações</p>
+        </div >
+      </div >
+
+      <div id="div3-1" onclick='show("div3-1")'>
+        <h4>Adiconar estilos/CSS dinâmicos</h4>
+        <div class='oculto'>
+          <p>No arquivo nomeComponent.component.ts, adicione na classe a variável/propriedade:</p>
+          <pre><span>export class nomeComponent {
+            color = 'yellow';
+            size = 30 + 'px';
+          }</span></pre>
+          <p>No arquivo nomeComponente.component.html, adicione a seguinte linha:</p>
+          <p>
+            <span>&lt;p [ngStyle]="{'font-size': size, color: color}"&gt;Testanto CSS dinâmico&lt;/p&gt;
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div id="div4" onclick="show('div4')">
+        <h4>Adicionar classes dinâmicas</h4>
+        <div class="oculto">
+          <p>No arquivo nomeComponent.component.ts, adicione na classe a variável/propriedade:</p>
+          <pre><span>export class nomeComponent {
+            classes = ['small-title', 'green-title'];
+            underline = 'underline-title';
+          }</span></pre>
+          <p>No arquivo nomeComponente.component.html, adicione a seguinte linha:</p>
+          <pre><span>&lt;p [ngClass]="classes"&gt;Testanto classes&lt;/p&gt;
+         &lt;p [ngClass]="underline"&gt;Testando classes&lt;/p&gt;
+          </span></pre>
+        </div>
+      </div>
+
+      <div id="div5" onclick="show('div5')" >
+        <h4>Compartilhar dados do componente pai para o componente filho</h4>
+        <div class="oculto">
+          <p>Para que um coponente filho tenha acesso a um dado do componente pai, primeiro criamos o dado no componente pai:</p>
+          <pre><span>export class AppComponent {
+            userData = { email: 'pedro@gmail.com', role: 'admin' };
+          }</span></pre>
+          <p>No componente filho, importamos "input" do core do Angular <span>import { Component, Input } from '@angular/core';</span> Depois adicionamos à classe da seguinte forma: <pre><span>export class NomeComponenteComponent {
+            @Input() userData!: { email: string; role: string };
+          }</span></pre></p>
+          <p>Não é obrigatório usar o mesmo nome "userData"</p>
+          <p>No arquivo HTML do componente pai, passamos os dados da seguinte forma:<p><span>&lt;app-nomeComponente [userData]="userData"&gt;&lt;/app-nomeComponente&gt;</span></p></p>
+          <p>Por fim, no arquivo HTML do componente filho, utilizamos o dado da seguinte forma:</p>
+          <p><span>&lt;p&gt;Email: {{ userData.email }}&lt;/p&gt;</span></p>
+          <p><span>&lt;p&gt;Função: {{ userData.role }}&lt;/p&gt;</span></p>
+        </div>
+      </div >
+      
     </div>
+
   </body>
 </html>

@@ -4,7 +4,8 @@
   padding: 0;
   color: white;
   list-style: none;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: Helvetica;
 }
 body {
   background-color: black;
@@ -17,8 +18,24 @@ h1 {
   color: aliceblue;
 }
 h4 {
+  padding: 2px 6px;
   color: rgb(247, 255, 12);
   margin-top: 10px;
+}
+h4:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  color: rgb(52, 245, 242);
+}
+.oculto {
+  overflow: hidden;
+  max-height: 0px;
+}
+.visivel {
+  max-height: 2000px;
+}
+.ativo {
+  color: rgb(52, 245, 242);
 }
 p,
 pre {
