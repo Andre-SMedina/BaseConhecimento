@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
+    <title>VS Code</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">VS Code</a></h1>
+
+    <div class="main">
+      <div id="div1" onclick='show("div1")'>
+        <h4>Inserir bloco de código personalizado (snippets)</h4>
+        <div class="oculto">
+          <ol>
+            <li>Abrir o "Command Palette" com o comando Ctrl+Shift+p</li>
+            <li>digita snippets</li>
+            <li>seleciona "snippets: configure user snippets"</li>
+            <li>Escolha o tipo de arquivo que deseja aplicar a regra</li>
+            <li>Remova o comentário que está abaixo de Example:</li>
+          </ol>
+          <pre><span>"Print to console": {
+    "prefix": "x",
+    "body": [
+        "console.log('$1');",
+        "$2"
+    ],
+    "description": "Log output to console"
+            }</span></pre>
+          <p>
+            Na primeira linha você dá o nome que quiser para identificar o
+            bloco. Em "prefix" coloca a sequência de letras que serão digitadas
+            para inserir o bloco. Em "body", cada elemento no array representa
+            uma linha que será inserida. "$1" indica onde vai começar o cursor,
+            e na sequêcia vem "$2" que indica o segundo lugar onde vai ficar o
+            cursor. "$0" indica onde vai ficar a última posição do cursor. Para
+            dar um "tab", coloca "\t"
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

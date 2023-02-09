@@ -42,49 +42,64 @@
               >&lt;app-"nome-do-componente"&gt;&lt;/app-"nome-do-componente"&gt;</span
             >
           </p>
-        </div >
-      </div >
+        </div>
+      </div>
 
       <div id="div2" onclick="show('div2')">
         <h4>Adicionar dados do componente ao template HTML</h4>
         <div class="oculto">
-          <p>
-            Vá no arquivo "nomeComponent.component.ts" e adicione as
-            variáveis/propriedades ou funções na classe que está sendo exportada. Exemplo:
-            <pre><span>export class nomeComponent {
+          Vá no arquivo "nomeComponent.component.ts" e adicione as
+          variáveis/propriedades ou funções na classe que está sendo exportada.
+          Exemplo:
+          <pre><span>export class nomeComponent {
               name: string = "Andre";
               age: number = 30;
               hobbies = ['Nadar', 'Correr', 'Ler'];
               car = { name: 'Polo', year: 2019 };
             }</span>
             </pre>
+          <p>
+            Depois vá no arquivo "nomeComponent.component.html" e adicione o
+            valor das variáveis utilizando {{variável}} Exemplos:
           </p>
-          <p>Depois vá no arquivo "nomeComponent.component.html" e adicione o valor das variáveis utilizando {{variável}} Exemplos:</p>
           <p>{{ name }}</p>
           <p>{{ hobbies[1] }}</p>
           <p>{{ car.name }}</p>
-        </div >
-      </div >
+        </div>
+      </div>
 
       <div id="div3" onclick="show('div3')">
-        <h4 >Adicionar estilos/CSS estáticos</h4>
+        <h4>Adicionar estilos/CSS estáticos</h4>
         <div class="oculto">
-          <p>Global: Na pasta src, abra o arquivo styles.css e faça suas alterações</p>
-          <p>No componente: Na pasta src/app, abra o arquivo nomeComponent.component.css e faça suas alterações</p>
-        </div >
-      </div >
+          <p>
+            Global: Na pasta src, abra o arquivo styles.css e faça suas
+            alterações
+          </p>
+          <p>
+            No componente: Na pasta src/app, abra o arquivo
+            nomeComponent.component.css e faça suas alterações
+          </p>
+        </div>
+      </div>
 
       <div id="div3-1" onclick='show("div3-1")'>
         <h4>Adiconar estilos/CSS dinâmicos</h4>
-        <div class='oculto'>
-          <p>No arquivo nomeComponent.component.ts, adicione na classe a variável/propriedade:</p>
+        <div class="oculto">
+          <p>
+            No arquivo nomeComponent.component.ts, adicione na classe a
+            variável/propriedade:
+          </p>
           <pre><span>export class nomeComponent {
             color = 'yellow';
             size = 30 + 'px';
           }</span></pre>
-          <p>No arquivo nomeComponente.component.html, adicione a seguinte linha:</p>
           <p>
-            <span>&lt;p [ngStyle]="{'font-size': size, color: color}"&gt;Testanto CSS dinâmico&lt;/p&gt;
+            No arquivo nomeComponente.component.html, adicione a seguinte linha:
+          </p>
+          <p>
+            <span
+              >&lt;p [ngStyle]="{'font-size': size, color: color}"&gt;Testanto
+              CSS dinâmico&lt;/p&gt;
             </span>
           </p>
         </div>
@@ -93,37 +108,238 @@
       <div id="div4" onclick="show('div4')">
         <h4>Adicionar classes dinâmicas</h4>
         <div class="oculto">
-          <p>No arquivo nomeComponent.component.ts, adicione na classe a variável/propriedade:</p>
+          <p>
+            No arquivo nomeComponent.component.ts, adicione na classe a
+            variável/propriedade:
+          </p>
           <pre><span>export class nomeComponent {
             classes = ['small-title', 'green-title'];
             underline = 'underline-title';
           }</span></pre>
-          <p>No arquivo nomeComponente.component.html, adicione a seguinte linha:</p>
+          <p>
+            No arquivo nomeComponente.component.html, adicione a seguinte linha:
+          </p>
           <pre><span>&lt;p [ngClass]="classes"&gt;Testanto classes&lt;/p&gt;
          &lt;p [ngClass]="underline"&gt;Testando classes&lt;/p&gt;
           </span></pre>
         </div>
       </div>
 
-      <div id="div5" onclick="show('div5')" >
+      <div id="div5" onclick="show('div5')">
         <h4>Compartilhar dados do componente pai para o componente filho</h4>
         <div class="oculto">
-          <p>Para que um coponente filho tenha acesso a um dado do componente pai, primeiro criamos o dado no componente pai:</p>
+          <p>
+            Para que um coponente filho tenha acesso a um dado do componente
+            pai, primeiro criamos o dado no componente pai:
+          </p>
           <pre><span>export class AppComponent {
             userData = { email: 'pedro@gmail.com', role: 'admin' };
           }</span></pre>
-          <p>No componente filho, importamos "input" do core do Angular <span>import { Component, Input } from '@angular/core';</span> Depois adicionamos à classe da seguinte forma: <pre><span>export class NomeComponenteComponent {
+          <p>
+            No componente filho, importamos "input" do core do Angular
+            <span>import { Component, Input } from '@angular/core';</span>
+            Depois adicionamos à classe da seguinte forma:
+          </p>
+          <pre><span>export class NomeComponenteComponent {
             @Input() userData!: { email: string; role: string };
-          }</span></pre></p>
+          }</span></pre>
           <p>Não é obrigatório usar o mesmo nome "userData"</p>
-          <p>No arquivo HTML do componente pai, passamos os dados da seguinte forma:<p><span>&lt;app-nomeComponente [userData]="userData"&gt;&lt;/app-nomeComponente&gt;</span></p></p>
-          <p>Por fim, no arquivo HTML do componente filho, utilizamos o dado da seguinte forma:</p>
+          <p>
+            No arquivo HTML do componente pai, passamos os dados da seguinte
+            forma:
+          </p>
+          <p>
+            <span
+              >&lt;app-nomeComponente
+              [userData]="userData"&gt;&lt;/app-nomeComponente&gt;</span
+            >
+          </p>
+          <p>
+            Por fim, no arquivo HTML do componente filho, utilizamos o dado da
+            seguinte forma:
+          </p>
           <p><span>&lt;p&gt;Email: {{ userData.email }}&lt;/p&gt;</span></p>
           <p><span>&lt;p&gt;Função: {{ userData.role }}&lt;/p&gt;</span></p>
         </div>
-      </div >
-      
-    </div>
+      </div>
 
+      <div id="div6" onclick='show("div6")'>
+        <h4>Utilizando if para renderizar algo no template</h4>
+        <div class="oculto">
+          <p>
+            No arquivo nomeComponent.component.ts, adicione na classe a
+            variável/propriedade:
+          </p>
+          <pre><span>export class nomeComponent {
+            canShow: boolean = true;
+          }</span></pre>
+          <p>
+            No arquivo nomeComponente.component.html, adicione a seguinte linha:
+          </p>
+          <pre><span>&lt;p *ngIf="canShow"&gt;Esse texto pode ser exibido&lt;/p&gt;</span></pre>
+          <p>
+            Caso a variável/propriedade seja falsa, o texto não será exibido
+          </p>
+        </div>
+      </div>
+
+      <div id="div7" onclick='show("div7 ")'>
+        <h4>Criando eventos ao interagir com a página</h4>
+        <div class="oculto">
+          <p>
+            No arquivo nomeComponent.component.ts, adicione na classe a
+            variável/propriedade:
+          </p>
+          <pre><span>export class nomeComponent {
+            show: boolean = true;
+            sowMessage(): void {
+              this.show = !this.show
+            }
+          }</span></pre>
+          <p>
+            No arquivo nomeComponente.component.html, adicione a seguinte linha:
+          </p>
+          <pre><span>&lt;p *ngIf="show"&gt;Exibindo mensagem!&lt;/p&gt;
+            &lt;button (click)="showMessage()"&gt;Cique em mim!&lt;/button&gt;
+          </span></pre>
+        </div>
+      </div>
+
+      <div id="div8" onclick='show("div8")'>
+        <h4>Enviar função de filho para pai</h4>
+        <div class="oculto">
+          <p>
+            <a
+              href="https://www.youtube.com/watch?v=T6gD9mJ27Gw&list=PLnDvRpP8Bnex2GQEN0768_AxZg_RaIGmw&index=11"
+              target="_blank"
+              >Ver vídeo</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div id="div9" onclick='show("div9")'>
+        <h4>Utilizando loops em listas nos templates</h4>
+        <div class="oculto"></div>
+      </div>
+
+      <div id="div10" onclick='show("div10")'>
+        <h4>Criando interfaces</h4>
+        <div class="oculto">
+          <p>
+            As inerfaces são utilizadas para tornar o projeto mais padronizado,
+            pois quando for utilizar a interface, deve seguir todo o modelo
+            dela.
+          </p>
+          <p>
+            Para criar interfaces, vá na pasta app e nela crie o
+            Arquivo.ts(Sempre com lettra maiúscula) com o nome da interface.
+            Dentro do arquivo deve ficar assim:
+          </p>
+          <pre><span>export interface Animal {
+            name: string;
+            age: number;
+          }</span></pre>
+          Quando quiser usar a interface, deve-se importá-la no arquivo
+          utilizando: <span>import { Animal } from 'src/app/Animal';</span>
+          <pre><span>animals: Animal[ ] = [
+            { name: 'Turca', type: 'dog', age: 5 },
+            { name: 'Tom', type: 'Cat', age: 7 },
+          ];</span></pre>
+          <span>animal: Animal = {name: "bob", type: "dog", age: 4}</span>
+          <pre><span>showAge(animal: Animal): void {
+            this.animalDetails = `O pet ${animal.name} tem ${animal.age} anos!`;
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div11" onclick='show("div11")'>
+        <h4>Alterando strings com pipe operator</h4>
+        <div class="oculto">
+          <p>
+            É possível alterar strings diretamente no template através de pipes.
+            No arquivo HTML faça assim:
+          </p>
+          <p>
+            <span
+              >&lt;p&gt;{{ "testando uppercase" | uppercase}}&lt;/p&gt;</span
+            >
+            torna todas as letras maiúsculas
+          </p>
+          <p>
+            <span
+              >&lt;p&gt;{{ "testando titlecase" | titlecase}}&lt;/p&gt;</span
+            >
+            torna as primeiras letras de cada palava maiúsculas
+          </p>
+        </div>
+      </div>
+
+      <div id="div12" onclick='show("div12")'>
+        <h4>Espelhando o que é digitado no input</h4>
+        <div class="oculto">
+          <p>
+            No arquivo "app.module.ts", importe o módulo "FormsModule" assim:
+            <span>import { FormsModule } from '@angular/forms';</span>
+          </p>
+          <p>
+            Na linha onde está o "@NgModule({...})", dentro do array "imports",
+            inclua o "FormsModule" assim:
+            <span>imports: [BrowserModule, FormsModule],</span>
+          </p>
+          <p>No arquivo HTML, utilize o "ngModel" assim:</p>
+          <pre><span>&lt;form&gt;
+            &lt;input
+              type="text"
+              [(ngModel)]="name"
+              name="name"
+              placeholder="Digite seu nome"
+            /&gt;
+            &lt;input type="submit" value="Enviar" /&gt;
+      &lt;/form&gt;
+    &lt;p&gt;{{name}}&lt;/p&gt;</span></pre>
+          <p>
+            No componente relacionado ao arquivo HTML onde foi utilizado o
+            "ngModel", crie a variável/propriedade dentro da classe:
+            <span>"name: string = ' '; "</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="div13" onclick='show("div13")'>
+        <h4>Utilizando Services</h4>
+        <div class="oculto">
+          <p>
+            "Services" seria como um conjunto de funções que podem ser
+            importadas em qualquer componente.
+          </p>
+          <ol>
+            <li>
+              Para criar um, vá no terminal e digite:
+              <span>ng generate service services/nomeDoService</span>
+            </li>
+            <li>
+              No componente onde deseja utilizar, importe o service,
+              <span
+                >import { nomeDoService } from
+                'src/app/services/nomeDoService.service';</span
+              >, passe como parâmetro no "constructor",
+              <span>constructor(private service: nomeDoService) { }</span>
+            </li>
+            <li>
+              Vá no arquivo "nomeDoService.service.ts" e crie a função do
+              service:
+              <pre><span>soma(num1: number, num2: number) {
+                return num1 + num2  
+              }</span></pre>
+            </li>
+            <li>No componente, crie a função que utilizará o service:</li>
+            <pre><span>somarNumeros(num1: number, num2: number): void {
+              console.log(this.service.soma(num1, num2));
+            }</span></pre>
+          </ol>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
