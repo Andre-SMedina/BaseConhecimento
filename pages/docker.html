@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
+    <title>Docker</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">Docker</a></h1>
+
+    <div class="main">
+      <a href="https://www.docker.com/products/docker-desktop/" target="_blank"
+        >Download</a
+      >
+      <div id="div1" onclick='show("div1")'>
+        <h4>Criando / Iniciando containers</h4>
+        <div class="oculto">
+          <p>
+            Abra um terminal no VScode e digite:
+            <span>docker run -it ubuntu</span>. Com esse comando, será criado um
+            container com o S.O. do ubuntu, caso ele já esteja na sua máquina,
+            se não estiver a imagem será baixada. Esse imagem é baixada do
+            repositório do <a href="https://hub.docker.com/">docker hub</a>.
+          </p>
+          <p>A flag "-it" é para iniciar já no terminal do ubuntu</p>
+          <p>
+            A flag -d inicia o container em segundo plano. Exemplo:
+            <span>docker run -d ubuntu</span>
+          </p>
+          <p>
+            Para iniciar um container já criado, utiliza-se o comando:
+            <span>docker start -i ID_container</span> O "-i" é para já começar
+            no terminal do container
+          </p>
+          <p>
+            Para abrir uma porta ao iniciar o container, utiliza-se a flag "-p
+            80:80", exemplo: <span>docker run -p 80:80 -d ID_container</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="div2" onclick='show("div2")'>
+        <h4>Mostrar lista de containers / imagens</h4>
+        <div class="oculto">
+          <span>docker ps</span> Mostra os containers ativos
+          <span>docker ps -a</span> Mostra os containers instalados
+          <span>docker image ls</span> Mostra as imagens disponíveis para
+          instalação
+        </div>
+      </div>
+
+      <div id="div3" onclick='show("div3")'>
+        <h4>Parando um container</h4>
+        <div class="oculto">
+          <span>docker stop container_ID</span>
+        </div>
+      </div>
+
+      <div id="div4" onclick='show("div4")'>
+        <h4>Nomeando um container ao inicià-lo</h4>
+        <div class="oculto">
+          <span>docker run --name nome_do_container ubuntu</span>
+        </div>
+      </div>
+
+      <div id="div5" onclick='show("div5")'>
+        <h4>Mostrar logs de um container</h4>
+        <div class="oculto">
+          <span>docker logs ID_container</span>
+        </div>
+      </div>
+
+      <div id="div6" onclick='show("div6")'>
+        <h4>Remover container / imagem</h4>
+        <div class="oculto">
+          <p>
+            Antes de remover um container, execute o comando
+            <span>docker ps -a</span> para ver os IDs dos containers. Depois
+            execute: <span>docker rm ID_container</span>
+          </p>
+          <p>
+            PS. O container precisa estar desligado antes de remover. Para
+            forçar a remoção pode utilizar a flag "-f"
+          </p>
+          <p>
+            Antes de remover uma imagem, execute o comando
+            <span>docker image ls</span> para ver os IDs das imagens. Depois
+            execute: <span>docker rmi Image_ID</span>
+          </p>
+          <p>
+            Antes de remover uma imagem é preciso remover o container que
+            estiver utilizando a imagem
+          </p>
+        </div>
+      </div>
+
+      <div id="div7" onclick='show("div7")'>
+        <h4>Criar uma imagem de node como exemplo</h4>
+        <div class="oculto">
+          <p>
+            Crie uma pasta com o arquivo "index.js" e execute o "npm init -y"
+            para criar o arquivo "package.json".
+          </p>
+          <p>
+            Depois execute o comando "npm install express" para instalar o
+            express
+          </p>
+          <p>
+            Pode apagar o arquivo "package-locke.json" e a pasta "node_modules",
+            pois esses serão criados no container após executar o "npm install".
+          </p>
+          <p>Depois coloque esse código no arquivo "index.js":</p>
+          <pre>
+            <span>const express = require("express");
+            const app = express();
+            const port = 3000;
+            
+            app.get("/", (req, res) => {
+              res.send("Olá Doker! Atualização 2");
+            });
+            
+            app.listen(port, () => {
+              console.log(`Rodando na porta ${port}`);
+            });</span></pre>
+          <p>
+            Em seguida crie um arquivo com o nome "Dockerfile" e nele crie o
+            seguinte código:
+          </p>
+          <pre>
+            <span>#define a imagem que será utilizada
+            FROM node
+            
+            #Define o local onde ficarão os arquivos de trabalho
+            WORKDIR /usr/src/app
+            
+            #copia o arquivo package.json para a pasta especificada em WORKDIR
+            COPY package.json /usr/src/app
+            #também poderia usar apenas o "." para referenciar o WORKDIR. Ficando assim: "COPY package.json ."
+            
+            #execulta o comando "npm install" dentro do container
+            RUN npm install
+            
+            #copia todos os arquivos na pasta atual para o caminho do WORKDIR
+            COPY . .
+            
+            #serve para expor a porta 3000, por onde será acessada a aplicação
+            EXPOSE 3000
+            
+            #comando para iniciar a aplicação
+            CMD [ "node", "index.js" ]</span></pre>
+          <p>
+            Por fim, no terminal execute o comando
+            <span>docker build .</span> onde o "." serve para ler o arquivo
+            "Dockerfile"
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
