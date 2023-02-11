@@ -43,6 +43,9 @@ ul {
 .ativo {
   color: rgb(52, 245, 242);
 }
+.esp {
+  padding-left: 40px;
+}
 
 span {
   color: hsl(284, 100%, 81%);

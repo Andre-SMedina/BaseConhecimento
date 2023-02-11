@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
     <title>Git</title>
   </head>
   <body>
@@ -24,18 +25,25 @@
       <div id="div2" onclick='show("div2")'>
         <h4>Ver status dos arquivos</h4>
         <div class="oculto">
-          <span>git status</span>
+          <p>
+            <span>git status</span> Mostra quais alterações já foram para o
+            stage
+          </p>
+          <p>
+            <span>git log</span> Mostra um histórico de commits. Para sair do
+            log aperte "q"
+          </p>
         </div>
       </div>
 
-      <div id="div3" onclick="show(div3)">
-        <h4>Dando commit local nas alterações</h4>
+      <div id="div3" onclick="show('div3')">
+        <h4>Dando commit nas alterações</h4>
         <div class="oculto">
           <span>git commit -m "mensagem"</span>
         </div>
       </div>
 
-      <div id="div4" onclick="show(div4)">
+      <div id="div4" onclick="show('div4')">
         <h4>Alterando mensagem do commit anterior</h4>
         <div class="oculto">
           <span>git commit -m "mensagem" --amend</span>
