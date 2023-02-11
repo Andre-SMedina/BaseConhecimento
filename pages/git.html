@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Git</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">Git</a></h1>
+
+    <div class="main">
+      <div id="div1" onclick='show("div1")'>
+        <h4>Adicionando alterações no stage</h4>
+        <div class="oculto">
+          <p>
+            <span>git add .</span> Adiciona todas as alterações ao stage.
+            Deixando pronto para fazer commit
+          </p>
+        </div>
+      </div>
+
+      <div id="div2" onclick='show("div2")'>
+        <h4>Ver status dos arquivos</h4>
+        <div class="oculto">
+          <span>git status</span>
+        </div>
+      </div>
+
+      <div id="div3" onclick="show(div3)">
+        <h4>Dando commit local nas alterações</h4>
+        <div class="oculto">
+          <span>git commit -m "mensagem"</span>
+        </div>
+      </div>
+
+      <div id="div4" onclick="show(div4)">
+        <h4>Alterando mensagem do commit anterior</h4>
+        <div class="oculto">
+          <span>git commit -m "mensagem" --amend</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
