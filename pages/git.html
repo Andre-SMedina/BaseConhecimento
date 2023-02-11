@@ -49,6 +49,20 @@
           <span>git commit -m "mensagem" --amend</span>
         </div>
       </div>
+      
+      <div id="div5" onclick='show("div5")'>
+        <h4>Desfazendo commit</h4>
+        <div class="oculto">
+          <p>
+            <span>git reset --soft HEAD~3</span> Desfaz os últimos 3 commits sem
+            perder o que foi alterado
+          </p>
+          <p>
+            <span>git reset --hard HEAD~3</span> Desfaz os últimos 3 commits
+            perdendo tudo o que foi alterado neles
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
