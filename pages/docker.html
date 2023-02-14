@@ -37,7 +37,10 @@
           </p>
           <p>
             Para abrir uma porta ao iniciar o container, utiliza-se a flag "-p
-            80:80", exemplo: <span>docker run -p 80:80 -d ID_container</span>
+            80:80", exemplo:
+            <span>docker run -p 80:80 -d ID_container</span> onde o primeiro 80
+            é a porta que será acessada pelo browser e o segundo é a porta
+            aberta do container
           </p>
         </div>
       </div>
@@ -153,8 +156,9 @@
             CMD [ "node", "index.js" ]</span></pre>
           <p>
             Por fim, no terminal execute o comando
-            <span>docker build .</span> onde o "." serve para ler o arquivo
-            "Dockerfile"
+            <span>docker -t nomeImagem build .</span> onde o "." serve para ler
+            o arquivo "Dockerfile" que está na mesma pasta e o -t serve para
+            nomear a imagem
           </p>
         </div>
       </div>
@@ -162,6 +166,24 @@
       <div id="div8" onclick='show("div8")'>
         <h4>Limpar cache e parar todos os containers</h4>
         <div class="oculto"><span>docker system prune</span></div>
+      </div>
+
+      <div id="div9" onclick='show("div9")'>
+        <h4>Executar comando dentro do container</h4>
+        <div class="oculto">
+          <p>
+            <span>docker exec ubuntu ls</span> Isso irá listar os arquivos na
+            atual pasta do ubuntu
+          </p>
+        </div>
+      </div>
+
+      <div id="div10" onclick='show("div10")'>
+        <h4>Acessar / Sair terminal do container em segundo plano</h4>
+        <div class="oculto">
+          <span>docker exec -it ubuntu bash</span>
+          <p>Para sair do container digite "exit" e pressione enter.</p>
+        </div>
       </div>
     </div>
   </body>

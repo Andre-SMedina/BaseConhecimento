@@ -13,12 +13,41 @@
 
     <div class="main">
       <div id="div1" onclick='show("div1")'>
-        <h4>Adicionando alterações no stage</h4>
+        <h4>Adicionando / Removendo alterações no stage</h4>
         <div class="oculto">
+          <p>
+            Stage é o local onde as alterações vão ficar prontas para do commit
+          </p>
           <p>
             <span>git add .</span> Adiciona todas as alterações ao stage.
             Deixando pronto para fazer commit
           </p>
+          <p>
+            <span>git add nomeArquivo</span> Adiciona apenas um arquivo ao stage
+          </p>
+          <p>
+            <span>git add *.js</span> Adiciona todos os arquivos com extensão
+            "js"
+          </p>
+          <p>
+            <span>git reset -- nomeArquivo</span> Remove o arquivo do stage e se
+            não especificar o arquivo, remove todos
+          </p>
+          <p>
+            <span>git add -i</span> Abre o menu de interação que possibilita:
+          </p>
+          <ol>
+            <li>
+              Escolha a opção "revert", enter, e depois o número do arquivo que
+              quer tirar do stage, depois aperte enter. Para finalizar aperta
+              enter de novo.
+            </li>
+            <li>
+              A opção "add untracked" permite adicionar novamente os arquivos
+              que estão fora do stage
+            </li>
+            <li>Escolha a opção "quit" para sair</li>
+          </ol>
         </div>
       </div>
 
@@ -61,7 +90,26 @@
             <span>git reset --hard HEAD~3</span> Desfaz os últimos 3 commits
             perdendo tudo o que foi alterado neles
           </p>
-          <p><span>git </span></p>
+          <p>
+            <span>git rebase -i HEAD~4</span> Mostra os 4 últimos commits,
+            possibilitado fazer alterações neles:
+          </p>
+          <ol>
+            <li>
+              É possível remover um commit e suas alterações mudando a palavra
+              "pick" do commit para a letra "d"
+            </li>
+            <li>
+              É possível mesclar vários commits mudando a segunda palavra "pick"
+              por "s". Explicação nesse
+              <a
+                href="https://www.youtube.com/watch?v=6OokP-NE49k"
+                target="_blank"
+                >vídeo</a
+              >
+              no minuto 6:15
+            </li>
+          </ol>
         </div>
       </div>
 
@@ -69,6 +117,16 @@
         <h4>Alterar editor de texto padrão do git</h4>
         <div class="oculto">
           <span>git config --global core.editor "nano"</span>
+        </div>
+      </div>
+
+      <div id="div6" onclick='show("div6")'>
+        <h4>Clonando repositório</h4>
+        <div class="oculto">
+          <p>
+            <span>git clone url_do_repositório</span> Será criada uma pasta com
+            o nome do repositório e seus arquivos dentro
+          </p>
         </div>
       </div>
     </div>

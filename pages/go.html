@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../script.js"></script>
+    <title>Go</title>
+  </head>
+  <body>
+    <h1><a href="../index.html">Go</a></h1>
+
+    <div class="main">
+      <p>
+        <a href="https://go.dev/ref/spec" target="_blank">Especification go</a>
+        |
+        <a href="https://go.dev/doc/effective_go" target="_blank"
+          >Effective go</a
+        >
+        |
+        <a href="https://pkg.go.dev/std" target="_blank">Standard library</a>
+      </p>
+      <div id="div1" onclick='show("div1")'>
+        <h4>Mostrar / Alterar env</h4>
+        <div class="oculto">
+          <span>go env</span>
+          <span>go env -w propriedade=valor</span>
+        </div>
+      </div>
+
+      <div id="div2" onclick='show("div2")'>
+        <h4>Criar executável</h4>
+        <div class="oculto"><span>go build arquivo.go</span></div>
+      </div>
+
+      <div id="div3" onclick='show("div3")'>
+        <h4>Ativar get / install</h4>
+        <div class="oculto">
+          <span>go env -w GO111MODULE=auto</span>
+          <span>go env -w GOBIN=C:\Users\Andre\go\bin</span>
+        </div>
+      </div>
+
+      <div id="div4" onclick='show("div4")'>
+        <h4>Ver funções de um package</h4>
+        <div class="oculto">
+          <p>
+            Acesse
+            <a href="https://pkg.go.dev/" target="_blank">go packages</a> ao
+            achar o package vá em index para ver as funções dele
+          </p>
+        </div>
+      </div>
+
+      <div id="div5" onclick='show("div5")'>
+        <h4>Ignorar um retorno de uma função</h4>
+        <div class="oculto">
+          <p>
+            Se uma função retorna dois valores e você só quer usar um, utilize o
+            "_" underline no lugar onde receberia o retorno e coloque a variável
+            no outro lugar para receber o outro valor
+          </p>
+        </div>
+      </div>
+
+      <div id="div6" onclick='show("div6")'>
+        <h4>Manipulando Strings</h4>
+        <div class="oculto">
+          <p>
+            Para utilizar aspas em uma string faça assim: "Ola \"meu amigo\""
+          </p>
+        </div>
+      </div>
+
+      <div id="div7" onclick='show("div7")'>
+        <h4>Converter tipos de variáveis</h4>
+        <div class="oculto">
+          <p><span>x = int(c)</span> Atribui o tipo int à variável c</p>
+        </div>
+      </div>
+
+      <div id="div8" onclick='show("div8")'>
+        <h4>Declarar várias constantes em uma linha</h4>
+        <div class="oculto">
+          <p>
+            Constantes não tem tipos definidos. Só são definidos depois de ser
+            utilizada
+          </p>
+          <span>
+            <pre>
+            const (
+                x = 10
+                y=20
+                z=30
+            )</pre
+            >
+          </span>
+        </div>
+      </div>
+
+      <div id="div9" onclick='show("div9")'>
+        <h4>Utilizando iota (sequência de números)</h4>
+        <div class="oculto">
+          <pre><span>const (
+                x = iota + 100
+                _
+                z
+              )
+          </span></pre>
+          <p>
+            Neste formato, x será 100, o "_" faz com que pule o próximo valor da
+            sequência e o z será 102
+          </p>
+        </div>
+      </div>
+
+      <div id="div10" onclick='show("div10")'>
+        <h4>Utilizando "for"</h4>
+        <div class="oculto">
+          <p>"for" padrão</p>
+          <pre><span>for x := 0; x &lt; 5; x++ {
+  if x%2 == 0 {			
+  fmt.Println(x)  
+  } 
+          }</span></pre>
+          <p>"for" funcionando como "while"</p>
+          <pre><span>y := 0
+              for {
+                fmt.Println(y)
+                y++
+                if y == 10 {			
+                  break 
+                }
+                }</span></pre>
+          <p>
+            "for" também pode ser usado apenas com uma clausula. Ex:
+            <span>for a > B { }</span>
+          </p>
+          <p>
+            Pode-se usar "continue" para pular para a próxima iteração ignorando
+            o restante do código no loop
+          </p>
+        </div>
+      </div>
+
+      <div id="div11" onclick='show("div11")'>
+        <h4>Condicionais</h4>
+        <div class="oculto">
+          <h3>if e else</h3>
+          <pre><span>if x > 10 {
+            fmt.Println("Ok")
+          } else if {
+            fmt.Println("Talvez")
+          } else {
+            fmt.Println("Não")
+          }</span></pre>
+          <p>Pode-se inverter o resultado da condição com "!"</p>
+          <pre><span>if !(x > 10) {
+            fmt.Println("Ok")
+          }</span></pre>
+          <p>É possível declarar o valor de "x" dentro do "if":</p>
+          <pre><span>if x := 5; (x > 10) {
+            fmt.Println("Ok")
+          }</span></pre>
+          <h3>switch</h3>
+          <pre><span>x := 10
+            switch {
+            case x &lt; 5:
+              fmt.Println("x é menor que 5")
+            case x == 5:
+              fmt.Println("x é igual a 5")
+            case x &gt; 5:
+              fmt.Println("x é maior que 5")
+            default:
+              fmt.Println("Nenhum dos anteriores")
+            }</span></pre>
+          <p>
+            Também é possível um case verificar duas possibilidades separadas
+            por vírgula. Se uma das duas for true, vai executar aquele case.
+          </p>
+        </div>
+      </div>
+
+      <div id="div12" onclick='show("div12")'>
+        <h4>Arrays</h4>
+        <div class="oculto">
+          <p>
+            Para declarar um array é assim:
+            <span>var x [5]int{0, 3, 5, 7, 9}</span>
+          </p>
+          <p>Isso quer dizer que esse array tem 5 posições, contando com o 0</p>
+          <p>
+            Para atribuir um valor a um elemento do array é assim:
+            <span>x[0] = 1</span> Agora o elemento na posição 0 do array tem o
+            valor 1. O restante dos elementos vai ter o valor 0 por padrão se os
+            valores não forem definidos
+          </p>
+          <p>
+            Para ler uma posição do array é assim:
+            <span>fmt.Printls(x[0])</span> Será mostrado o valor do elemento na
+            posição 0
+          </p>
+          <p>
+            Não é possível acrescentar ou retirar elementos do array depois de
+            criado
+          </p>
+        </div>
+      </div>
+
+      <div id="div13" onclick='show("div13")'>
+        <h4>Slices</h4>
+        <div class="oculto">
+          <p>Criando um slice: <span>slice := [ ]int{1,2,3,4,5}</span></p>
+          <p>
+            Alterando valor de elemento do slice: <span>slice[3] = 8</span> O
+            elemento na posição 3 passa a ser 8
+          </p>
+          <p>
+            Adiconando elementos ao slice:
+            <span>slice = append(slice, 6, 7, 8)</span> Com isso, foi
+            acrescentado mais elementos na slice
+          </p>
+          <p>
+            <span>slice = append(slice, slice...)</span> Para adicionar uma
+            slice dentro de outra, é preciso colocar os 3 pontos
+          </p>
+          <p>Percorrendo um slice</p>
+          <pre><span>slice := [ ]int{5, 7, 9, 2, 8}
+            for indice, valor := range slice {
+              fmt.Printf("indice: %v valor: %v\n", indice, valor)
+            }</span></pre>
+          <p>Pegando elementos do slice</p>
+          <p>
+            <span>fatia := slice[0:2]</span> Aqui vai pegar os valores do indice
+            0 ao 1. O último indice a ser pego tem que acrescentar mais 1
+          </p>
+          <p>
+            <span>fatia := slice[1:]</span> Aqui pega do indice 1 até o final
+          </p>
+          <p><span>fatia := slice[:4]</span> Aqui pega do indice 0 até o 3</p>
+          <p><span>fatia := slice[:]</span> Aqui pega todos</p>
+          <p>Remover elementos de um slice</p>
+          <p>
+            <span>slice = append(slice[:2], slice[3:]...)</span> Aqui vai ser
+            atribuído ao slice os elementos do 0 ao 1 e os elementos do 3 ao
+            fim, deixando de fora o elemento 2
+          </p>
+        </div>
+      </div>
+
+      <div id="div14" onclick='show("div14")'>
+        <h4>Mostrar número de elementos em um slice</h4>
+        <div class="oculto">
+          <span>lista := [ ]int{3,5,2,8}</span>
+          <p><span>fmt.Println(len(lista))</span></p>
+        </div>
+      </div>
+
+      <div id="div15" onclick='show("div15")'>
+        <h4>Utilizando make com slices</h4>
+        <div class="oculto">
+          <p>
+            Utilizando make para criar um slice, é definido um limite para a
+            capacidade do slice, e se esse limite for ultrapassado, é definido
+            um novo limite com o dobro da capacidade. Dessa forma há um ganho em
+            desempenho
+          </p>
+          <p>
+            <span>slice := make([]int, 5, 10)</span> O 5 representa a quantidade
+            de elementos que já existem no slice e o 10 é o limite de elementos
+            que o slice suporta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

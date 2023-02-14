@@ -16,6 +16,10 @@ h1 {
   text-align: center;
   color: aliceblue;
 }
+h3 {
+  color: rgb(255, 0, 0);
+  text-shadow: 1px 1px 4px rgb(4, 4, 4);
+}
 h4 {
   padding: 2px 6px;
   color: rgb(247, 255, 12);
