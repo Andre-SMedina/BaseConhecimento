@@ -246,6 +246,11 @@
             atribuído ao slice os elementos do 0 ao 1 e os elementos do 3 ao
             fim, deixando de fora o elemento 2
           </p>
+          <span>slice2 := append(slice[:2], slice[3:]...)</span>
+          <h2 class="alert">
+            ATENÇÃO!!! Não crie um slice fatiando outro slice(como acima), pois
+            isso causa perdas de elementos no primeiro slice
+          </h2>
         </div>
       </div>
 
@@ -271,6 +276,157 @@
             de elementos que já existem no slice e o 10 é o limite de elementos
             que o slice suporta.
           </p>
+          <p>
+            Para vizualizar a capacidade do slice, usa-se:
+            <span>cap(slice)</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="div16" onclick='show("div16")'>
+        <h4>Slices multidimensionais(slice dentro de slice)</h4>
+        <div class="oculto">
+          <pre><span>	slice := [ ][ ]int{
+            [ ]int{1, 2, 3, 4},
+            [ ]int{10, 20, 30, 40},
+          }        
+          fmt.Println(slice[1][1])</span></pre>
+          <p>
+            Neste exemplo será impresso o valor do slice 1 na posição 1, que é
+            20
+          </p>
+        </div>
+      </div>
+
+      <div id="div17" onclick='show("div17")'>
+        <h4>Utilizando Map(object JS)</h4>
+        <div class="oculto">
+          <pre><span>agenda := map[string]int{
+            "maria": 444567,
+            "joao":  222341,
+          }
+          fmt.Println(agenda["joao"])</span></pre>
+          <p>
+            Para adicionar outra chave / valor:
+            <span>agenda["pedro"] = 666756</span>
+          </p>
+          <p>
+            Para verificar se a chave existe, utliza-se o "comma ok idiom".
+            Deve-se declarar duas variáveis que vão receber o map com uma chave,
+            se a chave existir, a primeira variável vai receber o valor da chave
+            e a segunda variável vai ser true, se não existir, a primeira
+            variável vai ser 0 e a segunda false. Exemplo:
+          </p>
+          <pre><span>if verifica, ok := agenda["marcos"]; ok {
+            fmt.Println(verifica)
+          } else {
+            fmt.Println("Chave não existe!")
+          }</span></pre>
+          <p>
+            Para percorrer um map usa-se o for com range. O range de um map é
+            aleatório, não segue a ordem das chaves que estão no map.
+          </p>
+          <pre><span>for key, value := range agenda {
+            fmt.Println(key, value)
+          }</span></pre>
+          <p>Deletando uma chave <span>delete(agenda, "maria")</span></p>
+        </div>
+      </div>
+
+      <div id="div18" onclick='show("div18")'>
+        <h4>Utilizando Structs</h4>
+        <div class="oculto">
+          <p>
+            Struct serve para armazenar tipos de dados diferentes e funciona
+            parecido com um map
+          </p>
+          <pre><span>type client struct {
+            name    string
+            surname string
+            smoking bool
+          }
+          
+          func main() {
+            cliente1 := client{
+              name:    "Joana",
+              surname: "da Silva",
+              smoking: true,
+            }
+            cliente2 := client{"José", "Soares", false}</span></pre>
+          <p>Adicionando um struct dentro de outro</p>
+          <pre><span>type profile struct {
+            client
+            gender  string
+            visits  int
+            average string
+          }
+          
+          func main() {
+            cliente1 := profile{
+              client: client{
+                name:    "Joana",
+                surname: "da Silva",
+                smoking: true,
+              },
+              gender:  "female",
+              visits:  24,
+              average: "two per week",
+            }</span></pre>
+          <p>
+            Tem ainda o struct anônimo, onde não é definido um type e é criado
+            diretamente na variável, porém ele não pode ser alterado nem
+            reutilizado
+          </p>
+          <pre><span>cliente := struct {
+            name string
+            age  int
+          }{
+            name: "Joana",
+            age:  34,
+          }</span></pre>
+          <p>
+            Acessar chaves de uma struct
+            <span>fmt.Println(cliente1.gender, cliente1.client.name)</span>
+          </p>
+        </div>
+      </div>
+
+      <div id="div19" onclick='show("div19")'>
+        <h4>Utilizando funções</h4>
+        <div class="oculto">
+          <pre><span>func main() {
+            result, message := sum("bom dia", 2, 4, 5, 6, 7, 10)
+            fmt.Println(result, message)
+          }
+          func sum(msg string, x ...int) (int, string) {
+            total := 0
+            msgx := "\n" + msg
+            for _, v := range x {
+              total += v
+            }
+            return total, msgx
+          }</span></pre>
+          <p>
+            A função acima recebe uma quantidade indefinida de argumentos devido
+            ao parâmetro variádico <span>(x ...int)</span> e retorna um int e
+            uma string, que foi definido aqui: <span>(int, string)</span>. O
+            parâmetro será uma slice contendo os valores passados como
+            argumentos. Lembrar que o parâmetro variádico deve ser sempre o
+            último.
+          </p>
+          <p class="alert">Passando uma slice como argumento</p>
+          <pre><span>func main() {
+            slice := []int{2, 4, 5, 6, 7, 10}
+            result := sum(slice...)
+            fmt.Println(result)
+          }
+          func sum(x ...int) int {
+            total := 0
+            for _, v := range x {
+              total += v
+            }
+            return total
+          }</span></pre>
         </div>
       </div>
     </div>

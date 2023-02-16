@@ -50,6 +50,14 @@ ul {
 .esp {
   padding-left: 40px;
 }
+.alert {
+  color: red;
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+.destac {
+  color: rgb(124, 249, 46);
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
 
 span {
   color: hsl(284, 100%, 81%);
