@@ -25,7 +25,7 @@
         <h4>Mostrar / Alterar env</h4>
         <div class="oculto">
           <span>go env</span>
-          <span>go env -w propriedade=valor</span>
+          <p><span>go env -w propriedade=valor</span></p>
         </div>
       </div>
 
@@ -407,16 +407,16 @@
             return total, msgx
           }</span></pre>
           <p>
-            A função acima recebe uma quantidade indefinida de argumentos devido
-            ao parâmetro variádico <span>(x ...int)</span> e retorna um int e
-            uma string, que foi definido aqui: <span>(int, string)</span>. O
-            parâmetro será uma slice contendo os valores passados como
-            argumentos. Lembrar que o parâmetro variádico deve ser sempre o
-            último.
+            A função acima recebe uma quantidade indefinida de argumentos ou
+            nenhum, devido ao parâmetro variádico <span>(x ...int)</span> e
+            retorna um int e uma string, que foi definido aqui:
+            <span>(int, string)</span>. O parâmetro será uma slice contendo os
+            valores passados como argumentos. Lembrar que o parâmetro variádico
+            deve ser sempre o último.
           </p>
-          <p class="alert">Passando uma slice como argumento</p>
+          <p class="destac">Passando uma slice como argumento</p>
           <pre><span>func main() {
-            slice := []int{2, 4, 5, 6, 7, 10}
+            slice := [ ]int{2, 4, 5, 6, 7, 10}
             result := sum(slice...)
             fmt.Println(result)
           }
@@ -427,6 +427,526 @@
             }
             return total
           }</span></pre>
+        </div>
+      </div>
+
+      <div id="div20" onclick='show("div20")'>
+        <h4>Utiizando "defer"(deixa para executar por último)</h4>
+        <div class="oculto">
+          <p>
+            O "defer" é utilizado quando aquela instrução deve ser executado por
+            último naquele bloco de código. Pode-se usar mais de um defer, nesse
+            caso, o primeiro defer na sequência será o último e o último será o
+            primeiro. Exemplo:
+          </p>
+          <pre><span>func main() {
+            defer fmt.Println("1")
+            fmt.Println("2")
+            fmt.Println("3")
+          }</span></pre>
+          <p>No exemplo acima, será impresso "2,3,1"</p>
+        </div>
+      </div>
+
+      <div id="div21" onclick='show("div21")'>
+        <h4>Utilizando métodos</h4>
+        <div class="oculto">
+          <p>
+            Os métodos só podem ser utilizados pelo type que é receptor dele.
+            Uma função é composta pelas seguintes partes:
+            <span>func (receiver) identifier(parameters) (returns) {code}</span>
+          </p>
+          <p>Então utilizamos o método assim:</p>
+          <pre><span>          type people struct {
+            name string
+            age  int
+          }          
+          func (p people) greet() {
+            fmt.Println("Bom dia!")
+          }
+          func main() {
+            paulo := people{"Paulo", 40}
+            paulo.greet()
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div22" onclick="show('div22')">
+        <h4>Utilizando Interfaces e polimorfismo</h4>
+        <div class="oculto">
+          <pre><span>type people struct {
+            name    string
+            surname string
+            age     int
+          }
+          type dentist struct {
+            people
+            operations int
+            wage       float64
+          }
+          type developer struct {
+            people
+            language string
+            projects int
+          }
+          func (p dentist) greet() {
+            fmt.Println("Olá dentistas!")
+            fmt.Println("Meu nome é", p.name, "Bom dia!")
+            fmt.Println("Eu já fiz", p.operations, "operações ao todo.")
+            fmt.Println("Nosso salário gira em torno de", p.wage)
+          }
+          func (p developer) greet() {
+            fmt.Println("Olá desenvolvedores!")
+            fmt.Println("Meu nome é", p.name, "Bom dia!")
+            fmt.Println("Sou especialista na linguagem", p.language)
+            fmt.Println("Já fiz", p.projects, "projetos.")
+          }
+          type apresentation interface {
+            greet()
+          }
+          func register(a apresentation) {
+            a.greet()
+          }
+          func main() {
+            paulo := dentist{
+              people: people{
+                name:    "Paulo",
+                surname: "Almeida",
+                age:     34,
+              },
+              operations: 344,
+              wage:       15.346,
+            }
+            marcos := developer{
+              people: people{
+                name:    "Marcos",
+                surname: "Medina",
+                age:     54,
+              },
+              language: "golang",
+              projects: 12,
+            }
+            marcos.greet()
+            fmt.Println("")
+            register(marcos)
+            fmt.Println("")
+            paulo.greet()
+            fmt.Println("")
+            register(paulo)
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div23" onclick='show("div23")'>
+        <h4>Função anônima</h4>
+        <div class="oculto">
+          <pre><span>x := 10
+            func(x int) {
+              fmt.Printf("x vezes 5 é: %v", x*5)
+            }(x)</span></pre>
+        </div>
+      </div>
+
+      <div id="div24" onclick='show("div24")'>
+        <h4>Utilizando closure(função que retorna uma função)</h4>
+        <div class="oculto">
+          <pre><span>func main() {
+            a := x()
+            fmt.Println(a())
+            fmt.Println(a())
+            b := x()
+            fmt.Println(b())
+            fmt.Println(b())
+          }
+          func x() func() int {
+            i := 0
+            return func() int {
+              i++
+              return i
+            }
+          }</span></pre>
+          <p>
+            No exemplo acima, a função x vai retornar uma função anônima cujo
+            retorno será o "i + 1". A variável "a" vai receber o retorno da
+            função anônima e cada vez que "a" for executado o valor anterior vai
+            ser preservado e somado mais 1, o primeiro print de "a" vai ser 1 e
+            o segundo vai ser 2. Ao atribuir a função "x" a "b", o valor de "i"
+            será zerado para "b" mas o valor em "a" será preservado.
+          </p>
+        </div>
+      </div>
+
+      <div id="div25" onclick='show("div25")'>
+        <h4>Função recursiva</h4>
+        <div class="oculto">
+          <p>
+            Funções recursivas executam elas próprias até que uma condição seja
+            satisfeita. No exemplo abaixo, a função irá fatorar o número passado
+            como argumento até que "x" seja igual a 1.
+          </p>
+          <pre><span>func main() {
+            fmt.Print(" = ", factorial(4))
+          }
+          func factorial(x int) int {
+            if x == 1 {
+              fmt.Print(x)
+              return x
+            }
+            fmt.Print(x, " * ")
+            return x * factorial(x-1)
+          }</span></pre>
+          <p>
+            Também é possível obter o mesmo resultado com loops, é mais seguro e
+            recomendado.
+          </p>
+          <pre><span>func main() {
+            fmt.Println(fact(6))
+          }
+          func fact(x int) int {
+            result := x
+            for x > 2 {
+              result *= x - 1
+              x--
+            }
+            return result
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div26" onclick='show("div26")'>
+        <h4>Utilizando ponteiros</h4>
+        <div class="oculto">
+          <p>
+            Quando passamos uma variável como argumento para uma função, é
+            enviado uma cópia do valor da variável. Com os ponteiros é possível
+            passar o endereço da memória onde está a variável e alterar o valor
+            dela.
+          </p>
+          <pre><span>          type people struct {
+            name    string
+            surname string
+            age     int
+          }
+          func main() {
+            andre := people{"Andre", "Luis", 25}
+            change(&andre)
+          }
+          func change(x *people) {
+            (*x).name = "Carlos" //forma padrão de alterar o valor
+            x.surname = "Almeida" //forma excepcional de alterar o valor
+          }</span></pre>
+          <p>
+            No exemplo acima, serão alterados os valores de name e surname da
+            variável "andre" que foi passada como argumento
+          </p>
+        </div>
+      </div>
+
+      <div id="div27" onclick='show("div27")'>
+        <h4>Converções JSON</h4>
+        <div class="oculto">
+          <p>De struct para JSON</p>
+          <pre><span>          type People struct {
+            Name    string
+            Surname string
+            Age     int
+          }
+          func main() {
+            andre := People{"Andre", "Luis", 25}
+            andrejson, err := json.Marshal(andre)
+            if err != nil {
+              fmt.Println(err)
+            }
+            fmt.Println(string(andrejson))
+          }</span></pre>
+          <p>
+            Para converter um struct para JSON, primeiro devemos importar o
+            package "encoding/json" e usar letras maiúsculas na declaração da
+            struct e nas suas chaves. A função json.Marshal() recebe um struct
+            retorna um objeto json em binário e um erro(se houver), para
+            vizualisar os valores corretamente, é preciso converter para string.
+          </p>
+          <p>De JSON para struct</p>
+          <pre><span>          type People struct {
+            Name    string `json:"Name"` //Essas são tags
+            Surname string `json:"Surname"`
+            Age     int    `json:"Age"`
+          }
+          func main() {
+            objson := []byte(`{"Name":"Andre","Surname":"Luis","Age":25}`)
+            var andre People
+            err := json.Unmarshal(objson, &andre)
+            if err != nil {
+              fmt.Println(err)
+            }
+            fmt.Println(andre)
+          }</span></pre>
+          <p>
+            Para converter um JSON para struct, vamos atribuir a variável
+            "objson", o objeto json no tipo slice de byte, depois criamos a
+            variável que irá receber o struct, já com o mesmo tipo de struct,
+            nesse caso "People". A função "json.Unmarshal()" irá retornar um
+            erro se houver e devemos passar como argumento o objson e o ponteiro
+            da variável que vai receber o struct, nesse caso "andre". As "tags"
+            servem para relacionar uma chave com outra, pois no json pode vir
+            uma chave com nome "surname", mas no struct a chave vai ser
+            "sobrenome", nesse caso a tag "surname" deve ficar ao lado da chave
+            que vai receber seu valor no struct.
+          </p>
+        </div>
+      </div>
+
+      <div id="div28" onclick='show("div28")'>
+        <h4>Ordenar slice</h4>
+        <div class="oculto">
+          <p>Ordenando strings e ints</p>
+          <pre><span>          import (
+            "fmt"
+            "sort"
+          )
+          func main() {
+            ss := []string{"pedro", "carla", "anderson", "josé", "nonato"}
+            si := []int{4, 2, 8, 5, 1, 3, 7}
+            sort.Strings(ss)
+            sort.Ints(si)
+            fmt.Println(ss, si)
+          }</span></pre>
+          <p>sort personalizado</p>
+          <pre><span>          type carro struct {
+            nome     string
+            potencia int
+            consumo  int
+          }
+          
+          type ordenarPorPotencia []carro
+          
+          func (x ordenarPorPotencia) Len() int           { return len(x) }
+          func (x ordenarPorPotencia) Less(i, j int) bool { return x[i].potencia < x[j].potencia }
+          func (x ordenarPorPotencia) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+          
+          type ordenarPorConsumo []carro
+          
+          func (x ordenarPorConsumo) Len() int           { return len(x) }
+          func (x ordenarPorConsumo) Less(i, j int) bool { return x[i].consumo > x[j].consumo }
+          func (x ordenarPorConsumo) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+          
+          type ordenarPorNome []carro
+          
+          func (x ordenarPorNome) Len() int           { return len(x) }
+          func (x ordenarPorNome) Less(i, j int) bool { return x[i].nome < x[j].nome }
+          func (x ordenarPorNome) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+          
+          func main() {
+            carros := []carro{
+              carro{"fusca", 80, 30},
+              carro{"chevete", 50, 25},
+              carro{"porshe", 100, 20},
+            }
+            fmt.Println("Nome | Potência | Consumo")
+            fmt.Println("Inicial\n", carros)
+            sort.Sort(ordenarPorPotencia(carros))
+            fmt.Println("Potência\n", carros)
+            sort.Sort(ordenarPorConsumo(carros))
+            fmt.Println("Do menor consumo para o maior\n", carros)
+            sort.Sort(ordenarPorNome(carros))
+            fmt.Println("Ordem crescente alfabética\n", carros)
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div29" onclick='show("div29")'>
+        <h4>Encryptando senhas</h4>
+        <div class="oculto">
+          <pre><span>          import ("fmt"; "golang.org/x/crypto/bcrypt")
+            func main() {
+              crypt, _ := bcrypt.GenerateFromPassword([]byte("senha"), 10)
+              decrypt := bcrypt.CompareHashAndPassword(sb, []byte("senha"))
+              if decrypt != nil {
+                fmt.Println("A senha está errada!")
+              } else {
+                fmt.Println("A senha está correta!")
+              }
+            }</span></pre>
+          <p>
+            O número 10 é para informar o tamnho do hash. Quanto maior o número,
+            maior o custo computacional para gerar.
+          </p>
+        </div>
+      </div>
+
+      <div id="div30" onclick='show("div30")'>
+        <h4>Utilizando time.Sleep()</h4>
+        <div class="oculto">
+          <span>time.Sleep(2 * time.Second)</span>
+          <p>
+            Primeiro deve-se importar o package "time". O 2 é a quantidade de
+            segundos que o progama aguardará.
+          </p>
+        </div>
+      </div>
+
+      <div id="div31" onclick='show("div31")'>
+        <h4>Utilizando goRoutines</h4>
+        <div class="oculto">
+          <pre><span>          func main() {
+            contador :=0
+            totalDeGoroutines := 100
+            var wg sync.WaitGroup
+            <span class="comment">//define o número total de goRoutines</span>
+            wg.Add(totalDeGoroutines)
+            var mu sync.Mutex
+            for i := 0; i &lt; totalDeGoroutines; i++ {
+              go func ()  {
+                <span class="comment">//tranca a execução para que nenhuma outra goRoutine seja executada antes que essa termine</span>
+                mu.Lock()
+                v := contador
+                <span class="comment">//libera o processador para fazer outra coisa enquanto o programa espera</span >
+                runtime.Gosched()
+                v++
+                contador = v
+                <span class="comment">//destranca a execução, liberando para que outra goRoutine seja executada</span>
+                mu.Unlock()
+                <span class="comment">//informa que já concluiu essa parte da goRoutine</span>
+                wg.Done()
+              }()
+            }
+            <span class="comment">//pede para não encerrar o programa até que termine todas as goRoutines</span>
+            wg.Wait()
+            fmt.Println("Valor final: ", contador)
+          }</span></pre>
+        </div>
+      </div>
+
+      <div id="div32" onclick='show("div32")'>
+        <h4>Utilizando canal</h4>
+        <div class="oculto">
+          <p>
+            Criar um canal bidirecional. OBS: Só pode enviar valor para um canal
+            se ele estiver dentro de uma "go routine"
+          </p>
+          <pre><span>	canal := make(chan int)
+            go func() {
+              canal &lt;- 42
+            }()
+            fmt.Println(&lt;-canal)</span></pre>
+          <p>
+            Utilizando canais específicos de send e receive. Cada vez que rodar
+            o código "channel&lt;-" será adicionado mais um valor no canal,
+          </p>
+          <pre><span>func main() {
+            channel := make(chan int) //cria um canal que pode ser escrito ou lido
+            go loop(10, channel)
+            prints(channel)
+          }
+          
+          func loop(t int, c chan&lt;- int) { //"chan&lt;-" define que serão enviados dados para o canal(send)
+            for i := 0; i &lt; t; i++ {
+              c &lt;- i
+            }
+            close(c) //informa para o canal que não vai mais receber nada
+          }
+          
+          func prints(c &lt;-chan int) { //"&lt;-chan" define que serão recebidos dados do canal(receive)
+            for v := range c {
+              fmt.Println(v)
+            }
+          }</span></pre>
+          <p>
+            Fazendo um switch case para ler 2 canais e identificar de qual canal
+            é o valor. Ao entrar no select, enquanto tiver algum valor no canal,
+            ele vai continuar repetindo. o "v" neste exemplo, vai receber o
+            valor que está sendo recebido do canal no momento
+          </p>
+          <pre><span>func main() {
+            a := make(chan int)
+            b := make(chan int)
+            x := 100
+          
+            go func(x int) {
+              for i := 0; i &lt; x; i++ {
+                a &lt;- i
+              }
+            }(x / 2)
+            go func(x int) {
+              for i := 0; i &lt; x; i++ {
+                b &lt;- i
+              }
+            }(x / 2)
+          
+            for i := 0; i &lt; x; i++ {
+              select {
+              case v := &lt;-a:
+                fmt.Println("Canal A:", v)
+              case v := &lt;-b:
+                fmt.Println("Canal B:", v)
+              }
+            }
+          }</span></pre>
+          <p>
+            Utilizando "comma ok" para verificar se ainda tem algum valor dentro
+            do canal. Ao atribuir 2 variáveis ao retorno de um canal, um valor
+            será o conteúdo do canal e o outro será false ou true, se o conteúdo
+            for 0 e o outro valor for false, quer dizer que esse 0 não é o
+            conteúdo do canal, e sim a indicação de que o canal está vazio.
+          </p>
+          <pre><span>func main() {
+            ch := make(chan int)
+
+            go func() {		
+              ch&lt;-42
+              close(ch)		
+            }()
+            v, ok := &lt;-ch
+            fmt.Println(v, ok)
+            v, ok = &lt;-ch
+            fmt.Println(v, ok)
+          }</span></pre>
+          <p>Utilizando coverge, ou seja, convergindo dois canais em um só.</p>
+          <pre><span>func main() {
+          par := make(chan int)
+          impar := make(chan int)
+          converge := make(chan int)
+
+          go envia(par, impar)
+          go recebe(par, impar, converge)
+
+          for v := range converge {
+            fmt.Println("O valor recebido é:", v)
+          }
+        }
+
+        func envia(p, i chan int) {
+          x := 50
+          for n := 0; n &lt;x; n++ {
+            if n % 2 == 0 {
+              p &lt;- n
+            } else {
+              i &lt;- n
+            }
+          }
+          close(p)
+          close(i)
+        }
+
+        func recebe(p, i, c chan int) {
+          var wg sync.WaitGroup
+          wg.Add(1)
+          go func() {
+            for v := range p {
+              c &lt;- v
+            }
+            wg.Done()
+          }()
+          wg.Add(1)
+          go func() {
+            for v := range i {
+              c &lt;- v
+            }
+            wg.Done()
+          }()
+          wg.Wait()
+          close(c)
+        }</span></pre>
         </div>
       </div>
     </div>

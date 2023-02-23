@@ -13,14 +13,39 @@
 
     <div class="main">
       <h4>Manipular arquivos</h4>
-      <div class="esp">
+      <div class="espacamento">
         <p><span>touch arquivo.txt</span> Cria um arquivo txt</p>
+        <p>
+          <span>echo "ola teste" >> teste.txt</span> Se o arquivo teste.txt não
+          existir, ele é criado e é adicionado o texto nele. Se ele já existir o
+          texto é incluído no arquivo. OBS: sem acentos
+        </p>
         <p><span>rm arquivo</span> Apaga um arquivo</p>
         <p><span>rm -rf pasta</span> Apaga uma pasta e seu conteúdo</p>
+        <p>
+          <span>mv nome_arquivo destino_arquivo</span> Move um arquivo para
+          outro lugar
+        </p>
         <p>
           <span>nano arquivo.txt</span> Abre o arquivo no editor de texto
           "nano". Se o arquivo não existir ele será criado após salvar.
         </p>
+      </div>
+      <h4>Comandos diversos</h4>
+      <div class="espacamento">
+        <p><span>pwd</span> Mostra todo o caminho da pasta atual</p>
+        <p><span>ls</span> Mostra todos os arquivos da pasta atual</p>
+        <p>
+          <span>ls -a</span> Mostra todos os arquivos da pasta atual incluindo
+          ocultos
+        </p>
+        <p>
+          <span>ls -la</span> Mostra todos os arquivos da pasta atual com
+          detalhes
+        </p>
+        <p><span>cd caminho_da_pasta</span> entra em uma pasta</p>
+        <p><span>cd ..</span> Volta para o nível anterior da pasta</p>
+        <p><span>cd ../..</span> Volta dois níveis anteriores da pasta</p>
       </div>
     </div>
   </body>
