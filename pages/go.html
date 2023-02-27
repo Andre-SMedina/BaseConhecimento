@@ -21,6 +21,53 @@
         |
         <a href="https://pkg.go.dev/std" target="_blank">Standard library</a>
       </p>
+
+      <div id="div0" onclick='show("div0")'>
+        <h4>Preparar workspace</h4>
+        <div class="oculto">
+          <p>Primeiro é preciso criar a estrutura padrão de pastas.</p>
+          <pre>
+C:\Users\Andre\go...
+            \bin
+            \pkg
+            \src\github.com\andre\projeto
+          </pre>
+          <p>
+            Na pasta "C:\Users\Andre\go\src\github.com\andre" é onde serão
+            criados os projetos, com cada pasta sendo um projeto. Dentro da
+            pasta do projeto, cria o arquivo principal main.go e executa o
+            comando "go mod init" dentro dessa pasta. Ao criar uma outra pasta
+            dentro da pasta raiz, é possível criar um package, criando um
+            arquivo ".go" dentro dessa outra pasta, o arquivo ".go" dentro dessa
+            pasta poderá ser importado pelo arquivo principal, exemplo:
+          </p>
+          <pre>
+            No package
+            C:\Users\Andre\go\src\github.com\andre\pojeto\pkg1\pkg1.go
+            package pkg1
+            import "fmt"
+            func Hello() {
+              fmt.Println("Hello world!")
+            }
+            No arquivo principal
+            C:\Users\Andre\go\src\github.com\andre\pojeto\main.go
+            package main
+            import "github.com\andre\pojeto\pkg1"
+            func main() {
+              pkg1.Hello()
+            }
+          </pre>
+          <p>
+            Depois disso pode rodar o comando "go run main.go". Lembrando que As
+            funções e variáveis no package precisam começar com letra maiúscula
+            para serem públicas e acessiveis por outros scripts, se forem com
+            letra minúscula, serão privadas e acessiveis apenas dentro do
+            package. Por convenção, utilize sempre o mesmo nome para a pasta do
+            package e o arquivo do package.
+          </p>
+        </div>
+      </div>
+
       <div id="div1" onclick='show("div1")'>
         <h4>Mostrar / Alterar env</h4>
         <div class="oculto">
@@ -947,6 +994,22 @@
           wg.Wait()
           close(c)
         }</span></pre>
+          <p>
+            Exemplo de mais um canal com convergência
+            <a
+              href="https://github.com/vkorbes/aprendago/blob/master/c%C3%B3digo/21_canais/07/rob/main.go"
+              target="_blank"
+              >aqui</a
+            >
+          </p>
+          <p>
+            Exemplo de canal com divergência e convergência
+            <a
+              href="https://github.com/vkorbes/aprendago/tree/master/c%C3%B3digo/21_canais/08"
+              target="_blank"
+              >aqui</a
+            >
+          </p>
         </div>
       </div>
     </div>
